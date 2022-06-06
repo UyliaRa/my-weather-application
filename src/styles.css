@@ -1,0 +1,56 @@
+.weather-app {
+  border: 1px solid #ffc94e;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  max-width: 600px;
+}
+.mainicon {
+  width: 80px;
+}
+.smallicon {
+  width: 40px;
+  margin: 0px 15px !important;
+}
+ul {
+  list-style: none;
+  padding: 0px !important;
+}
+form {
+  margin-bottom: 30px;
+}
+h1 {
+  color: #ffc94e;
+  margin-bottom: 0;
+}
+.curTemp {
+  color: #ffc94e;
+  font-size: 30px;
+  font-weight: 500;
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 0px !important;
+}
+h5 {
+  position: relative;
+  padding-left: 18px;
+}
+.currentCondition {
+  position: relative;
+  padding-left: 40px !important;
+  padding-top: 65px;
+}
+.currentCity {
+  padding-top: 10px !important;
+}
+p {
+  text-align: center;
+}
+a {
+  text-decoration: none !important;
+}
+.btn-success {
+  background-color: #ffc94e !important;
+  border-color: #ffc94e !important;
+  position: relative;
+}

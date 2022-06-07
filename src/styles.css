@@ -16,6 +16,9 @@ ul {
   list-style: none;
   padding: 0px !important;
 }
+.skyCond {
+  text-transform: capitalize;
+}
 form {
   margin-bottom: 30px;
 }

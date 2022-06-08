@@ -79,7 +79,7 @@ function showWeather(response) {
     "heavy shower rain and drizzle" ||
     "shower drizzle"
   ) {
-    iconElement.setAttribute("src", "src/images/rainy-day.png");
+    iconElement.setAttribute("src", "src/images/rainy_day.png");
   } else if (
     conditionNow === "heavy intensity rain" ||
     "very heavy rain" ||
@@ -94,7 +94,7 @@ function showWeather(response) {
     conditionNow === "thunderstorm with light rain" ||
     "thunderstorm with rain" ||
     "thunderstorm with heavy rain" ||
-    "	light thunderstorm" ||
+    "light thunderstorm" ||
     "thunderstorm" ||
     "heavy thunderstorm" ||
     "ragged thunderstorm" ||

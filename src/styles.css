@@ -16,7 +16,7 @@ ul {
   list-style: none;
   padding: 0px !important;
 }
-.skyCond {
+li:first-letter {
   text-transform: capitalize;
 }
 form {

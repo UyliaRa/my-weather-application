@@ -37,18 +37,6 @@ function showCity(event) {
   }
 }
 
-/*let icons = [
-    "src/images/cloud.png",
-    "src/images/cloudy.png",
-    "src/images/lightening.png",
-    "src/images/rain.png",
-    "src/images/rainy-day.png",
-    "src/images/snowfall.png",
-    "src/images/sun_clouds.png",
-    "src/images/sun.png",
-    "src/images/wind.png",
-  ];*/
-
 function showWeather(response) {
   let yourCity = response.data.name;
   let searchedCity = document.querySelector("#searchedCity");

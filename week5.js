@@ -92,7 +92,7 @@ function showWeather(response) {
     iconElement.setAttribute("src", "src/images/rain.png");
   } else if (
     conditionNow === "thunderstorm with light rain" ||
-    "thunderstorm with rain" ||
+    "Thunderstorm with rain" ||
     "thunderstorm with heavy rain" ||
     "light thunderstorm" ||
     "thunderstorm" ||

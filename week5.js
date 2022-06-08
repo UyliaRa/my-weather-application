@@ -91,16 +91,16 @@ function showWeather(response) {
   ) {
     iconElement.setAttribute("src", "src/images/rain.png");
   } else if (
-    conditionNow === "thunderstorm with light rain" ||
-    "Thunderstorm with rain" ||
-    "thunderstorm with heavy rain" ||
-    "light thunderstorm" ||
-    "thunderstorm" ||
-    "heavy thunderstorm" ||
-    "ragged thunderstorm" ||
-    "thunderstorm with light drizzle" ||
-    "thunderstorm with drizzle" ||
-    "thunderstorm with heavy drizzle"
+    (conditionNow === "thunderstorm with light rain",
+    "Thunderstorm with rain",
+    "thunderstorm with heavy rain",
+    "light thunderstorm",
+    "thunderstorm",
+    "heavy thunderstorm",
+    "ragged thunderstorm",
+    "thunderstorm with light drizzle",
+    "thunderstorm with drizzle",
+    "thunderstorm with heavy drizzle")
   ) {
     iconElement.setAttribute("src", "src/images/lightening.png");
   } else if (

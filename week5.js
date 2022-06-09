@@ -37,6 +37,87 @@ function showCity(event) {
   }
 }
 
+function changeIcon(response) {
+  let iconElement = document.querySelector("#iconOfNow");
+  let conditionNow = response.data.weather[0].id;
+  if (
+    conditionNow === 200 ||
+    conditionNow === 201 ||
+    conditionNow === 202 ||
+    conditionNow === 210 ||
+    conditionNow === 211 ||
+    conditionNow === 212 ||
+    conditionNow === 221 ||
+    conditionNow === 230 ||
+    conditionNow === 231 ||
+    conditionNow === 232
+  ) {
+    iconElement.setAttribute("src", "src/images/lightening.png");
+  } else if (
+    conditionNow === 300 ||
+    conditionNow === 301 ||
+    conditionNow === 302 ||
+    conditionNow === 310 ||
+    conditionNow === 311 ||
+    conditionNow === 312 ||
+    conditionNow === 313 ||
+    conditionNow === 314 ||
+    conditionNow === 321
+  ) {
+    iconElement.setAttribute("src", "src/images/rainy_day.png");
+  } else if (
+    conditionNow === 500 ||
+    conditionNow === 501 ||
+    conditionNow === 502 ||
+    conditionNow === 503 ||
+    conditionNow === 504 ||
+    conditionNow === 511 ||
+    conditionNow === 520 ||
+    conditionNow === 521 ||
+    conditionNow === 522 ||
+    conditionNow === 531
+  ) {
+    iconElement.setAttribute("src", "src/images/rain.png");
+  } else if (
+    conditionNow === 600 ||
+    conditionNow === 601 ||
+    conditionNow === 602 ||
+    conditionNow === 611 ||
+    conditionNow === 612 ||
+    conditionNow === 613 ||
+    conditionNow === 615 ||
+    conditionNow === 616 ||
+    conditionNow === 620 ||
+    conditionNow === 621 ||
+    conditionNow === 622
+  ) {
+    iconElement.setAttribute("src", "src/images/snowfall.png");
+  } else if (
+    conditionNow === 701 ||
+    conditionNow === 711 ||
+    conditionNow === 721 ||
+    conditionNow === 731 ||
+    conditionNow === 741 ||
+    conditionNow === 751 ||
+    conditionNow === 761 ||
+    conditionNow === 762 ||
+    conditionNow === 771 ||
+    conditionNow === 781
+  ) {
+    iconElement.setAttribute("src", "src/images/wind.png");
+  } else if (conditionNow === 800) {
+    iconElement.setAttribute("src", "src/images/sun.png");
+  } else if (conditionNow === 801) {
+    iconElement.setAttribute("src", "src/images/sun_clouds.png");
+  } else if (conditionNow === 802) {
+    iconElement.setAttribute("src", "src/images/cloudy.png");
+  } else if (conditionNow === 803 || conditionNow === 804) {
+    iconElement.setAttribute("src", "src/images/cloud.png");
+  } else {
+    iconElement.setAttribute("src", "src/images/season.png");
+  }
+}
+
 function showWeather(response) {
   let yourCity = response.data.name;
   let searchedCity = document.querySelector("#searchedCity");
@@ -48,8 +129,6 @@ function showWeather(response) {
   let currentWind = document.querySelector("#wind");
   let skyNow = response.data.weather[0].description;
   let currentSkyCondition = document.querySelector("#skyCondition");
-  let conditionNow = response.data.weather[0].description;
-  let iconElement = document.querySelector("#iconOfNow");
 
   searchedCity.innerHTML = yourCity;
   currentTemperature.innerHTML = Math.round(temperatureNow);
@@ -57,80 +136,10 @@ function showWeather(response) {
   currentWind.innerHTML = windNow;
   currentSkyCondition.innerHTML = skyNow;
 
-  if (conditionNow === "clear sky") {
-    iconElement.setAttribute("src", "src/images/sun.png");
-  } else if (conditionNow === "few clouds") {
-    iconElement.setAttribute("src", "src/images/sun_clouds.png");
-  } else if (conditionNow === "scattered clouds") {
-    iconElement.setAttribute("src", "src/images/cloudy.png");
-  } else if (conditionNow === "broken clouds" || "overcast clouds") {
-    iconElement.setAttribute("src", "src/images/cloud.png");
-  } else if (
-    conditionNow === "light rain" ||
-    "moderate rain" ||
-    "light intensity shower rain" ||
-    "light intensity drizzle" ||
-    "drizzle" ||
-    "heavy intensity drizzle" ||
-    "light intensity drizzle rain" ||
-    "drizzle rain" ||
-    "heavy intensity drizzle rain" ||
-    "shower rain and drizzle" ||
-    "heavy shower rain and drizzle" ||
-    "shower drizzle"
-  ) {
-    iconElement.setAttribute("src", "src/images/rainy_day.png");
-  } else if (
-    conditionNow === "heavy intensity rain" ||
-    "very heavy rain" ||
-    "extreme rain" ||
-    "freezing rain" ||
-    "shower rain" ||
-    "	heavy intensity shower rain" ||
-    "ragged shower rain"
-  ) {
-    iconElement.setAttribute("src", "src/images/rain.png");
-  } else if (
-    (conditionNow === "thunderstorm with light rain",
-    "Thunderstorm with rain",
-    "thunderstorm with heavy rain",
-    "light thunderstorm",
-    "thunderstorm",
-    "heavy thunderstorm",
-    "ragged thunderstorm",
-    "thunderstorm with light drizzle",
-    "thunderstorm with drizzle",
-    "thunderstorm with heavy drizzle")
-  ) {
-    iconElement.setAttribute("src", "src/images/lightening.png");
-  } else if (
-    conditionNow === "light snow" ||
-    "Snow" ||
-    "Heavy snow" ||
-    "Sleet" ||
-    "Light shower sleet" ||
-    "Shower sleet" ||
-    "Light rain and snow" ||
-    "Rain and snow" ||
-    "Light shower snow" ||
-    "Shower snow" ||
-    "Heavy shower snow"
-  ) {
-    iconElement.setAttribute("src", "src/images/snowfall.png");
-  } else if (
-    conditionNow === "mist" ||
-    "Smoke" ||
-    "Haze" ||
-    "sand/ dust whirls" ||
-    "fog" ||
-    "sand" ||
-    "dust" ||
-    "volcanic ash" ||
-    "squalls" ||
-    "tornado"
-  ) {
-    iconElement.setAttribute("src", "src/images/wind.png");
-  }
+  let apiKey = "c4e197dbfea53d6e2014f3499d598de9";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?q=";
+  let apiUrl = `${apiEndpoint}${inputCity.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(changeIcon);
 }
 function searchWeatherData(response) {
   let apiKey = "c4e197dbfea53d6e2014f3499d598de9";

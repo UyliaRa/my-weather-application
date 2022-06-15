@@ -118,6 +118,34 @@ function changeIcon(response) {
   }
 }
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <p>${day}</p>
+              <img
+                class="smallicon"
+                src="src/images/sun_clouds.png"
+                alt="sun-clouds"
+              />
+              <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperature-max">23°C </span
+                ><span> | </span
+                ><span class="weather-forecast-temperature-min"> 15°C</span>
+              </div>
+            </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showWeather(response) {
   let yourCity = response.data.name;
   let searchedCity = document.querySelector("#searchedCity");
@@ -199,3 +227,5 @@ function goToNavigator(event) {
 
 let getMyPosition = document.querySelector("#current-location-button");
 getMyPosition.addEventListener("click", goToNavigator);
+
+showForecast();

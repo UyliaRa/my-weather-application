@@ -118,29 +118,124 @@ function changeIcon(response) {
   }
 }
 
+function changeForecastIcons(response) {
+  let forecastIconElement = document.querySelector("#iconForecast");
+  let conditionForecast = response.data.daily[0].weather[0].id;
+
+  if (
+    conditionForecast === 200 ||
+    conditionForecast === 201 ||
+    conditionForecast === 202 ||
+    conditionForecast === 210 ||
+    conditionForecast === 211 ||
+    conditionForecast === 212 ||
+    conditionForecast === 221 ||
+    conditionForecast === 230 ||
+    conditionForecast === 231 ||
+    conditionForecast === 232
+  ) {
+    forecastIconElement.setAttribute("src", "src/images/lightening.png");
+  } else if (
+    conditionForecast === 300 ||
+    conditionForecast === 301 ||
+    conditionForecast === 302 ||
+    conditionForecast === 310 ||
+    conditionForecast === 311 ||
+    conditionForecast === 312 ||
+    conditionForecast === 313 ||
+    conditionForecast === 314 ||
+    conditionForecast === 321
+  ) {
+    forecastIconElement.setAttribute("src", "src/images/rainy_day.png");
+  } else if (
+    conditionForecast === 500 ||
+    conditionForecast === 501 ||
+    conditionForecast === 502 ||
+    conditionForecast === 503 ||
+    conditionForecast === 504 ||
+    conditionForecast === 511 ||
+    conditionForecast === 520 ||
+    conditionForecast === 521 ||
+    conditionForecast === 522 ||
+    conditionForecast === 531
+  ) {
+    forecastIconElement.setAttribute("src", "src/images/rain.png");
+  } else if (
+    conditionForecast === 600 ||
+    conditionForecast === 601 ||
+    conditionForecast === 602 ||
+    conditionForecast === 611 ||
+    conditionForecast === 612 ||
+    conditionForecast === 613 ||
+    conditionForecast === 615 ||
+    conditionForecast === 616 ||
+    conditionForecast === 620 ||
+    conditionForecast === 621 ||
+    conditionForecast === 622
+  ) {
+    forecastIconElement.setAttribute("src", "src/images/snowfall.png");
+  } else if (
+    conditionForecast === 701 ||
+    conditionForecast === 711 ||
+    conditionForecast === 721 ||
+    conditionForecast === 731 ||
+    conditionForecast === 741 ||
+    conditionForecast === 751 ||
+    conditionForecast === 761 ||
+    conditionForecast === 762 ||
+    conditionForecast === 771 ||
+    conditionForecast === 781
+  ) {
+    forecastIconElement.setAttribute("src", "src/images/wind.png");
+  } else if (conditionForecast === 800) {
+    forecastIconElement.setAttribute("src", "src/images/sun.png");
+  } else if (conditionForecast === 801) {
+    forecastIconElement.setAttribute("src", "src/images/sun_clouds.png");
+  } else if (conditionForecast === 802) {
+    forecastIconElement.setAttribute("src", "src/images/cloudy.png");
+  } else if (conditionForecast === 803 || conditionForecast === 804) {
+    forecastIconElement.setAttribute("src", "src/images/cloud.png");
+  } else {
+    forecastIconElement.setAttribute("src", "src/images/season.png");
+  }
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function showForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col-2">
-              <p>${day}</p>
+              <p>${formatDay(forecastDay.dt)}</p>
               <img
                 class="smallicon"
-                src="src/images/sun_clouds.png"
-                alt="sun-clouds"
+                id="iconForecast"
+                src="src/images/season.png"
+                alt="icon"
               />
               <div class="weather-forecast-temperatures">
-                <span class="weather-forecast-temperature-max">23°C </span
+                <span class="weather-forecast-temperature-max">${Math.round(
+                  forecastDay.temp.max
+                )}°</span
                 ><span> | </span
-                ><span class="weather-forecast-temperature-min"> 15°C</span>
+                ><span class="weather-forecast-temperature-min"> ${Math.round(
+                  forecastDay.temp.min
+                )}°</span>
               </div>
             </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -149,8 +244,9 @@ function showForecast(response) {
 
 function getForecast(coordinates) {
   let apiKey = "c4e197dbfea53d6e2014f3499d598de9";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecast);
+  axios.get(apiUrl).then(changeForecastIcons);
 }
 
 function showWeather(response) {
